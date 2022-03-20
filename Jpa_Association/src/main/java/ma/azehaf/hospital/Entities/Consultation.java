@@ -1,25 +1,21 @@
-package ma.azehaf.jpa_application.Entities;
+package ma.azehaf.hospital.Entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
-
-//Creation d'une entité JPA
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Patient {
+public class Consultation {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
-    @Column(length = 50)
-    private String nom;
     @Temporal(TemporalType.DATE)
-    private Date dateNaissance;
-    private boolean malade;
-    private int score;
-
-
+    private Date dateConsultation;
+    private String rapport;
+    @OneToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private RendezVous rendezVous;
 }
