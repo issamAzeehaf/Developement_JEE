@@ -1,13 +1,13 @@
-package ma.azehaf.users_roles;
+package ma.azehaf.user_roles;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class UsersRolesApplicationTests {
+class UserRolesApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
+	@Test
+	void contextLoads() {
+	}
 
 }
