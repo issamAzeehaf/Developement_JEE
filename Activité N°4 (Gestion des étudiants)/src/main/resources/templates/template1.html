@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="webjars/bootstrap/5.1.3/js/bootstrap.bundle.js">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        .container{
+            display: block;
+        }
+        .navbar-light .navbar-nav .nav-link {
+            color: #000;
+        }
+        .login{
+
+        }
+        .login-link{
+            border-radius: 10rem;
+            background-color: khaki;
+        }
+        #MDB-logo{
+            float: left;
+            width: 60px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+        <div class="container">
+            <a class="navbar-brand" href="#"
+            ><img
+                    id="MDB-logo"
+                    src="/images/logo.PNG"
+            /></a>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" th:href="@{/}"><i class="bi bi-house-door-fill"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" href="#"><i class="bi bi-file-person-fill"></i>About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" th:href="@{/user/index}"><i class="bi bi-search"></i>Search</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasAuthority('ADMIN')">
+                        <a class="nav-link mx-2" th:href="@{/admin/formStudents}"><i class="bi bi-person-plus-fill"></i>Add</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2" th:href="@{/user/index}"><i class="bi bi-eye"></i>Students</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" >
+                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                        <a  class="nav-link" th:href="@{/user/profile}" role="button">
+                            <img src="https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909__340.png" alt="Avatar Logo" style="width:30px;" class="rounded-pill">
+                            <span sec:authentication="name"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                    <li sec:authorize="isAuthenticated()">
+                        <a class="nav-link" th:href="@{/logout}">Logout</a></li>
+                    </li>
+                    <li class="nav-item login">
+                        <a class="nav-link login-link" sec:authorize="!isAuthenticated()" th:href="@{/login}"><i class="bi bi-box-arrow-in-right"></i>&nbsp;Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section layout:fragment="content1">
+
+    </section>
+</div>
+</body>
+</html>
